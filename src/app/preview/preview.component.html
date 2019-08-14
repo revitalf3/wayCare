@@ -1,0 +1,17 @@
+<div class="metadata">
+  <span  *ngIf="selectedImage">Metadata: Id: {{selectedImage.id}}, Author: {{selectedImage.author}}, height: {{selectedImage.height}},
+    width: {{selectedImage.width}}</span>
+
+</div>
+<div class="preview">
+  <img *ngIf="selectedImage;else noImg" [src]="selectedImage.download_url">
+  <ng-template #noImg>
+    <h3>Click on the image to privew</h3>
+  </ng-template>
+
+</div>
+
+
+
+
+

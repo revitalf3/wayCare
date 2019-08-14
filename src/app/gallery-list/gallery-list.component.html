@@ -1,0 +1,28 @@
+<mat-tab-group animationDuration="0ms" >
+  <mat-tab label="All">
+    <ng-template mat-tab-label>
+      <mat-icon>image </mat-icon>   <p> All Images </p>
+    </ng-template>
+    <ul class="list">
+      <cdk-virtual-scroll-viewport  style="height: 500px" itemSize="90" >
+        <ng-container  *cdkVirtualFor="let img of images" >
+          <li (click)="imageClicked(img);" [class.clicked]="img === itemClass"  > <img [src]="img.download_url" ></li>
+        </ng-container>
+      </cdk-virtual-scroll-viewport>
+    </ul>
+  </mat-tab>
+  <mat-tab label="Favorite">
+    <ng-template mat-tab-label>
+      <mat-icon>favorite </mat-icon> <p> Favorite </p>
+    </ng-template>
+    <ul class="list">
+      <cdk-virtual-scroll-viewport  style="height: 500px" itemSize="90" >
+        <ng-container  *cdkVirtualFor="let imgFav of imagesFavorite" >
+          <li (click)="imageClicked(imgFav);" [class.clicked]="imgFav === itemClass"  > <img [src]="imgFav.download_url" ></li>
+        </ng-container>
+      </cdk-virtual-scroll-viewport>
+    </ul>
+  </mat-tab>
+</mat-tab-group>
+
+

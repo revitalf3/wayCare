@@ -1,0 +1,5 @@
+<div class="main">
+  <app-gallery-list [images]=" imagesList | async " (selectedImage)="onSelectedImage($event)"></app-gallery-list>
+  <app-preview [selectedImage]="selectedImage"></app-preview>
+</div>
+
