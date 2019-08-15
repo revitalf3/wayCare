@@ -1,0 +1,23 @@
+img {
+  max-width: 200px;
+  padding: 25px;
+}
+li {
+  cursor: pointer;
+  background: ghostwhite;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
+
+}
+.btnClose {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+}
+.btnFavorite {
+  position: absolute;
+  left: 0;
+}

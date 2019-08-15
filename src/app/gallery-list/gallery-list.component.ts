@@ -1,39 +1,63 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  OnChanges,
+  SimpleChanges,
+  ViewChildren,
+  QueryList,
+  ElementRef,
+  AfterViewInit,
+  ViewChild,
+  OnInit
+} from '@angular/core';
 import {Image} from '../gallery/Image';
 
 
 @Component({
   selector: 'app-gallery-list',
   templateUrl: './gallery-list.component.html',
-  styleUrls: ['./gallery-list.component.scss']
-})
-export class GalleryListComponent implements OnInit {
-  @Input() images: Image[] = [];
-  @Input() imagesFavorite: Image[] = [];
-  @Output() selectedImage: EventEmitter<any> = new EventEmitter<any>();
-  public itemClass: Image;
+  styleUrls: ['./gallery-list.component.scss'],
 
-  // @ViewChildren('imgs', {static: true}) imagesRef: ElementRef;
+})
+export class GalleryListComponent implements OnInit, OnChanges {
+  @Input() images: Image[];
+  @Output() selectedImage: EventEmitter<any> = new EventEmitter<any>();
+
 
   constructor() {
   }
 
-  ngOnInit() {
 
-    // this.imagesRef.forEach((img: ElementRef) => {
-    //   fromEvent(img.nativeElement, 'mouseenter')
-    //     .subscribe(item => console.log('hovered: ', item));
-    // });
+  ngOnInit() {}
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes && changes.images.currentValue) {
 
+      const favorites = localStorage.getItem('favorites')
+        ? JSON.parse(localStorage.getItem('favorites'))
+        : [];
+      favorites.forEach(fav => {
+        this.images.find(x => x.id === fav).favorite = true;
+      });
+    }
   }
 
   imageClicked($event, img) {
     if ($event.detail === 3) {
-      this.imagesFavorite = [...this.imagesFavorite, img];
+      img.favorite = true;
+      const favorites = this.images.filter(image => image.favorite).map(x => x.id);
+      console.log('favorites ', favorites);
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+
     }
-    this.itemClass = img;
     this.selectedImage.emit(img);
   }
+
+  remove(img) {
+    img.favorite = false;
+  }
+
 
 }

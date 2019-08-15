@@ -5,17 +5,7 @@ ul {
   padding: 0;
 }
 
-.list li {
-  padding: 25px;
-  cursor: pointer;
-  background: ghostwhite;
-  border-radius: 5px;
-  margin-bottom: 5px;
-  text-align: center;
-  font-size: 32px;
-  font-weight: 600;
 
-}
 .clicked {
   background: #c0c0c6 !important;
 }
@@ -24,10 +14,16 @@ ul {
   text-align: center;
 }
 
-img {
-  max-width: 200px;
-}
+
 
 p {
   margin: 14px;
+}
+
+
+.spinner {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  margin: 100px;
 }

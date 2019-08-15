@@ -1,0 +1,5 @@
+<li #ref (click)="onImageClicked($event, image)" [class.clicked]="image === itemClass">
+  <mat-icon  class="btnFavorite" *ngIf="image.favorite && !isTypeFav">favorite</mat-icon>
+  <mat-icon class="btnClose" (click)="remove(image)" *ngIf="isTypeFav">close</mat-icon>
+  <img [src]="image.download_url">
+</li>
