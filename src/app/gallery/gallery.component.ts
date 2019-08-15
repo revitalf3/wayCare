@@ -20,7 +20,6 @@ export class GalleryComponent implements OnInit {
   }
 
   onSelectedImage($event) {
-    debugger
     this.selectedImage = $event;
   }
 

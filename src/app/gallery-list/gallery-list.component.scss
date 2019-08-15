@@ -6,7 +6,6 @@ ul {
 }
 
 .list li {
-  padding: 25px;
   cursor: pointer;
   background: ghostwhite;
   border-radius: 5px;
@@ -26,8 +25,25 @@ ul {
 
 img {
   max-width: 200px;
+  padding: 25px;
 }
 
 p {
   margin: 14px;
+}
+
+.btnClose {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+}
+.btnFavorite {
+  position: absolute;
+  left: 0;
+}
+.spinner {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  margin: 100px;
 }

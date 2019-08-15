@@ -1,24 +1,36 @@
-<mat-tab-group animationDuration="0ms" >
+<mat-tab-group animationDuration="0ms">
   <mat-tab label="All">
     <ng-template mat-tab-label>
-      <mat-icon>image </mat-icon>   <p> All Images </p>
+      <mat-icon>image</mat-icon>
+      <p> All Images </p>
     </ng-template>
-    <ul class="list">
-      <cdk-virtual-scroll-viewport  style="height: 500px" itemSize="90" >
-        <ng-container  *cdkVirtualFor="let img of images" >
-          <li (click)="imageClicked($event, img);" [class.clicked]="img === itemClass"  > <img [src]="img.download_url" ></li>
+    <ul class="list" *ngIf="images;else second">
+      <cdk-virtual-scroll-viewport style="height: 500px" itemSize="90">
+        <ng-container *cdkVirtualFor="let img of images">
+          <li (click)="imageClicked($event, img);" [class.clicked]="img === itemClass">
+            <mat-icon class="btnFavorite" *ngIf="img.favorite">favorite</mat-icon>
+            <img [src]="img.download_url">
+          </li>
         </ng-container>
       </cdk-virtual-scroll-viewport>
     </ul>
+    <ng-template #second>
+      <div class="spinner">
+        <mat-spinner></mat-spinner>
+      </div>
+    </ng-template>
   </mat-tab>
   <mat-tab label="Favorite">
     <ng-template mat-tab-label>
-      <mat-icon>favorite </mat-icon> <p> Favorite </p>
+      <mat-icon>favorite</mat-icon>
+      <p> Favorite </p>
     </ng-template>
     <ul class="list">
-      <cdk-virtual-scroll-viewport  style="height: 500px" itemSize="90" >
-        <ng-container  *cdkVirtualFor="let imgFav of imagesFavorite" >
-          <li (click)="imageClicked($event, imgFav);" [class.clicked]="imgFav === itemClass"  > <img [src]="imgFav.download_url" ></li>
+      <cdk-virtual-scroll-viewport style="height: 500px" itemSize="90">
+        <ng-container *cdkVirtualFor="let imgFav of images">
+          <li *ngIf="imgFav.favorite" (click)="imageClicked($event, imgFav);" [class.clicked]="imgFav === itemClass">
+            <mat-icon class="btnClose" (click)="remove(imgFav)">close</mat-icon>
+            <img [src]="imgFav.download_url"></li>
         </ng-container>
       </cdk-virtual-scroll-viewport>
     </ul>
