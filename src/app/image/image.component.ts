@@ -9,11 +9,14 @@ import {fromEvent} from 'rxjs';
 })
 export class ImageComponent implements OnInit {
   @Input() image: Image;
+  @Input() isTypeFav: boolean;
+
   @Output() imageClicked: EventEmitter<any> = new EventEmitter<any>();
   @Output() imageRemove: EventEmitter<any> = new EventEmitter<any>();
-  @Input() isTypeFav: boolean;
-  public itemClass: Image;
+
   @ViewChild('ref', {static: true}) imageRef: ElementRef;
+
+  public itemClass: Image;
 
   constructor() {
   }
@@ -21,7 +24,6 @@ export class ImageComponent implements OnInit {
   ngOnInit() {
     fromEvent(this.imageRef.nativeElement, 'mouseenter')
       .subscribe(item => console.log('hovered: ', item));
-
   }
 
   onImageClicked($event, img) {

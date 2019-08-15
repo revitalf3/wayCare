@@ -35,4 +35,16 @@ describe('GalleryComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+  describe('ngOnInit', () => {
+    it('should getAllImages', (done: DoneFn) => {
+      const observable = galleryServiceStub.getAllImages();
+      observable
+        .subscribe((images) => {
+          expect(images).toEqual(getImagesMock());
+          done();
+        });
+    });
+  });
 });

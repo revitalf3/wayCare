@@ -2,12 +2,14 @@
   <mat-tab label="All">
     <ng-template mat-tab-label>
       <mat-icon>image</mat-icon>
-      <p #abc> All Images </p>
+      <p> All Images </p>
     </ng-template>
     <ul class="list" *ngIf="images;else second">
-      <cdk-virtual-scroll-viewport style="height: 500px" itemSize="90">
+      <cdk-virtual-scroll-viewport style="height: 500px" itemSize="50">
         <ng-container *cdkVirtualFor="let img of images">
-          <app-image [image]="img" [isTypeFav]="false" (imageClicked)="imageClicked($event, img)"></app-image>
+          <app-image [image]="img"
+                     [isTypeFav]="false"
+                     (imageClicked)="imageClicked($event, img)"></app-image>
         </ng-container>
       </cdk-virtual-scroll-viewport>
     </ul>
@@ -23,9 +25,13 @@
       <p> Favorite </p>
     </ng-template>
     <ul class="list">
-      <cdk-virtual-scroll-viewport style="height: 500px" itemSize="90">
+      <cdk-virtual-scroll-viewport style="height: 500px" itemSize="50">
         <ng-container *ngFor="let imgFav of images">
-          <app-image *ngIf="imgFav.favorite" [isTypeFav]="true" [image]="imgFav" (imageClicked)="imageClicked($event, imgFav)" (imageRemove)="remove($event)"></app-image>
+          <app-image *ngIf="imgFav.favorite"
+                     [isTypeFav]="true"
+                     [image]="imgFav"
+                     (imageClicked)="imageClicked($event, imgFav)"
+                     (imageRemove)="remove($event)"></app-image>
         </ng-container>
       </cdk-virtual-scroll-viewport>
     </ul>

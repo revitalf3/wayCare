@@ -5,11 +5,6 @@ import {
   Output,
   OnChanges,
   SimpleChanges,
-  ViewChildren,
-  QueryList,
-  ElementRef,
-  AfterViewInit,
-  ViewChild,
   OnInit
 } from '@angular/core';
 import {Image} from '../gallery/Image';
@@ -30,7 +25,6 @@ export class GalleryListComponent implements OnInit, OnChanges {
   constructor(private galleryService: GalleryService) {
   }
 
-
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -41,10 +35,6 @@ export class GalleryListComponent implements OnInit, OnChanges {
         this.images.find(x => x.id === fav).favorite = true;
       });
     }
-  }
-  filterItems(favorites: Image[]) {
-    if (!favorites) {  return; }
-    return favorites.filter(x => x.favorite);
   }
 
   imageClicked($event, img) {

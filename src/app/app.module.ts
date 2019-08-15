@@ -1,17 +1,17 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { GalleryComponent } from './gallery/gallery.component';
-import { HttpClientModule } from '@angular/common/http';
-import { GalleryListComponent } from './gallery-list/gallery-list.component';
-import { PreviewComponent } from './preview/preview.component';
-import { ScrollingModule } from '@angular/cdk/scrolling';
-import { MatTabsModule } from '@angular/material/tabs';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule } from '@angular/material';
-import { ImageComponent } from './image/image.component';
+import {AppComponent} from './app.component';
+import {GalleryComponent} from './gallery/gallery.component';
+import {HttpClientModule} from '@angular/common/http';
+import {GalleryListComponent} from './gallery-list/gallery-list.component';
+import {PreviewComponent} from './preview/preview.component';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MatTabsModule} from '@angular/material/tabs';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material';
+import {ImageComponent} from './image/image.component';
 
 @NgModule({
   declarations: [
@@ -34,4 +34,5 @@ import { ImageComponent } from './image/image.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
