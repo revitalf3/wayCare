@@ -22,7 +22,7 @@ export class GalleryService {
     localStorage.setItem('favorites', JSON.stringify(ids));
   }
 
-  getFavorites(): string[]{
+  getFavorites(): string[] {
     return localStorage.getItem('favorites')
       ? JSON.parse(localStorage.getItem('favorites'))
       : [];

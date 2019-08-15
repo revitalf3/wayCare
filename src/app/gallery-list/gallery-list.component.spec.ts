@@ -15,9 +15,14 @@ describe('GalleryListComponent', () => {
 
   beforeEach(async(() => {
 
+    const images: string[] = ['0'];
+
     galleryServiceStub = jasmine.createSpyObj('ContactsComponent', ['getFavorites', 'saveFavorites']);
+    galleryServiceStub.getFavorites.and.returnValue(images);
+
     simpleChange = {
-      images: new SimpleChange(null, {currentValue: getImagesMock()}, false)};
+      images: new SimpleChange(null, {currentValue: getImagesMock()}, false)
+    };
 
 
     TestBed.configureTestingModule({
@@ -41,6 +46,13 @@ describe('GalleryListComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  describe('ngOnChanges', () => {
+    it('should getFavorites from localStorage', () => {
+      component.images = getImagesMock();
+      component.ngOnChanges(simpleChange);
+      expect(galleryServiceStub.getFavorites).toHaveBeenCalled();
 
+    });
+  });
 
 });
