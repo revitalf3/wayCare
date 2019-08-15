@@ -13,6 +13,7 @@ import {
   OnInit
 } from '@angular/core';
 import {Image} from '../gallery/Image';
+import {GalleryService} from '../gallery/gallery.service';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class GalleryListComponent implements OnInit, OnChanges {
   @Output() selectedImage: EventEmitter<any> = new EventEmitter<any>();
 
 
-  constructor() {
+  constructor(private galleryService: GalleryService) {
   }
 
 
@@ -35,21 +36,22 @@ export class GalleryListComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes && changes.images.currentValue) {
 
-      const favorites = localStorage.getItem('favorites')
-        ? JSON.parse(localStorage.getItem('favorites'))
-        : [];
+      const favorites = this.galleryService.getFavorites();
       favorites.forEach(fav => {
         this.images.find(x => x.id === fav).favorite = true;
       });
     }
+  }
+  filterItems(favorites: Image[]) {
+    if (!favorites) {  return; }
+    return favorites.filter(x => x.favorite);
   }
 
   imageClicked($event, img) {
     if ($event.detail === 3) {
       img.favorite = true;
       const favorites = this.images.filter(image => image.favorite).map(x => x.id);
-      console.log('favorites ', favorites);
-      localStorage.setItem('favorites', JSON.stringify(favorites));
+      this.galleryService.saveFavorites(favorites);
 
     }
     this.selectedImage.emit(img);
@@ -57,6 +59,8 @@ export class GalleryListComponent implements OnInit, OnChanges {
 
   remove(img) {
     img.favorite = false;
+    const favorites = this.images.filter(image => image.favorite).map(x => x.id);
+    this.galleryService.saveFavorites(favorites);
   }
 
 

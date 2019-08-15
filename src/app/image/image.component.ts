@@ -19,7 +19,6 @@ export class ImageComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.imageRef);
     fromEvent(this.imageRef.nativeElement, 'mouseenter')
       .subscribe(item => console.log('hovered: ', item));
 

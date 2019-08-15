@@ -24,7 +24,7 @@
     </ng-template>
     <ul class="list">
       <cdk-virtual-scroll-viewport style="height: 500px" itemSize="90">
-        <ng-container *cdkVirtualFor="let imgFav of images">
+        <ng-container *ngFor="let imgFav of images">
           <app-image *ngIf="imgFav.favorite" [isTypeFav]="true" [image]="imgFav" (imageClicked)="imageClicked($event, imgFav)" (imageRemove)="remove($event)"></app-image>
         </ng-container>
       </cdk-virtual-scroll-viewport>
